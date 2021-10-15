@@ -1,0 +1,54 @@
+main {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+
+body {
+  background-color: bisque;
+  /*Will have backgroun image of custome board*/
+  display: grid;
+
+  /*have not determined exact sizes yet
+  but writing these two style aspects in 
+  as a reminder*/
+
+  /*grid-template-columns*/
+  grid-template-columns: auto auto auto auto;
+  /*grid-template-rows*/
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas: 
+  "auto title auto auto"
+  "auto message auto rules"
+  "auto board auto rules"
+  "auto footer auto auto";
+}
+
+#title {
+  grid-area: title;
+  background-color: blue;
+}
+
+#message {
+  grid-area: message;
+  background-color: brown;
+  width: 100px;
+}
+
+#rules {
+  grid-area: rules;
+  background-color: green;
+}
+
+#board {
+  grid-area: board;
+  background-color: indigo;
+  height: 200px;
+  width: 200px;
+}
+
+footer {
+  grid-area: footer;
+  background-color: lightcoral;
+}
