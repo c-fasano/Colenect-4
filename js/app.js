@@ -39,24 +39,39 @@ boardSlot.forEach.call(boardSlot, (slot)=>{
 /*-------------------------------- Functions --------------------------------*/
 
 
+
+
+
+function init () {
+  turn
+}
+
+
+
+
+function render () {
+
+}
+
 //List of functions for the game
 function handleClick (e) {
   //declare empty variables for columns and rows 
     //reference event listener above
   let column = e.target.cellIndex
   let row = []
+  let playerTurn = 1
   let player1Color = "black"
-  let player2Color = "White"
+  let player2Color = "white"
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 5; i > -1; i--) {
     if (boardRow[i].children[column]
     .style.backgroundColor === "mediumturquoise") {
       row.push(boardRow[i].children[column])
-      if (turn === 1) {
+      if (playerTurn === 1) {
         row[0].style.backgroundColor = 
         player1Color
       } else {
-        row[i].style.backgroundColor = 
+        row[0].style.backgroundColor = 
         player2Color
       }
     }
@@ -68,20 +83,49 @@ function handleClick (e) {
     //the player that clicked
     //b. Change the value of the player turn and update the message showing whose turn it is
 
+
+
+
+function winnerDef (slot1, slot2, slot3, slot4) {
+  if (slot1 === slot2 === slot3 === slot4 !== "mediumturquoise")
+    return true
+}
+    
   //2. defineWinner / checkWinner (Boolean)
     //a. basic definition: four slots / table cells are the same color 
     //b. within this function I can call functions for each type of winCheck 
       //1a. Horixontal, Vertical, Diagonal R -> L, Diagonal L-> R
       //2a. If any of these win conditions are satisfied the game is over
         //1b. If not - the game will continue
-function winnerDef () {
-  
+
+function horizontalWinCheck () {
+  //row[]will stay the same 
+  //column[], +1 , +2 , +3 or -1 , -2 , -3
 }
 
+
+function verticalWinCheck () {
+  //row[], +1 , +2 , +3 or -1 , -2 , -3
+  //column[] will stay the same
+}
+
+function diagonalWinCheck1 () { //Left to right (upward)
+  //row[], -1 , -2 , -3
+  //column[], +1 , +2 , +3
+}
+
+function diagonalWinCheck2 () { //Left to right (downward)
+  // row[], +1 , +2 , +3
+  //column[], +1 , +2 , +3
+}
 
   //3. Horizontal, Vertical, Diagonal 2x winCheck (Boolean)
     //a. Iterate over the 2d array and check for:
       //1a. Proper value changes in row and column indexes that signify a win
+
+function tieGameCheck () {
+  //all slots backgroundColor !== white and winner === null
+}
 
   //4. Check for tie game
     //a. basic premise is if all indexes are !== the starting color/value
