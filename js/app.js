@@ -4,7 +4,7 @@
 
 /*-------------------------------- Variables --------------------------------*/
 
-let turn, winner
+let turn, winner, board
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -21,7 +21,15 @@ boardSlot.forEach(slot => slot.addEventListener("click", (e) =>{
   ${e.target.cellIndex}`) //2d Array: rowIndex first and within rowIndex is cellIndex
 } )) //cellIndex is essentially = the value of the column 
 
+// Array.prototype.forEach.call(boardSlot, (slot)=>{
+//   slot.addEventListener("click", handleClick)
+//   slot.style.backgroundColor = "mediumturquoise"
+// })
 
+boardSlot.forEach.call(boardSlot, (slot)=>{
+  slot.addEventListener("click", handleClick)
+  slot.style.backgroundColor = "mediumturquoise"
+})
 //console.log will display rowIndex and then cellIndex like coordinates. 
 //NOT NEEDED FOR GAMEPLAY BUT SHOWS THAT EACH SLOT ON THE BOARD IS RESPONSIVE TO A CLICK
 //Can attach a function like a "handle click" once it is written
@@ -30,7 +38,31 @@ boardSlot.forEach(slot => slot.addEventListener("click", (e) =>{
 
 /*-------------------------------- Functions --------------------------------*/
 
+
 //List of functions for the game
+function handleClick (e) {
+  //declare empty variables for columns and rows 
+    //reference event listener above
+  let column = e.target.cellIndex
+  let row = []
+  let player1Color = "black"
+  let player2Color = "White"
+
+  for (let i = 0; i < 5; i++) {
+    if (boardRow[i].children[column]
+    .style.backgroundColor === "mediumturquoise") {
+      row.push(boardRow[i].children[column])
+      if (turn === 1) {
+        row[0].style.backgroundColor = 
+        player1Color
+      } else {
+        row[i].style.backgroundColor = 
+        player2Color
+      }
+    }
+  }
+}
+
   //1.  handleClick
     //a. Will change the color of the slot click on to represent the id of 
     //the player that clicked
@@ -42,6 +74,10 @@ boardSlot.forEach(slot => slot.addEventListener("click", (e) =>{
       //1a. Horixontal, Vertical, Diagonal R -> L, Diagonal L-> R
       //2a. If any of these win conditions are satisfied the game is over
         //1b. If not - the game will continue
+function winnerDef () {
+  
+}
+
 
   //3. Horizontal, Vertical, Diagonal 2x winCheck (Boolean)
     //a. Iterate over the 2d array and check for:
@@ -60,3 +96,5 @@ boardSlot.forEach(slot => slot.addEventListener("click", (e) =>{
     //b. Reset the player turn value to player 1
     //c. Reprompt input for player names
     //d. Hide the reset button
+
+
