@@ -1,6 +1,8 @@
 /*-------------------------------- Constants --------------------------------*/
 
+//playerColors
 
+//emptySlot="mediumTurquoise"
 
 /*-------------------------------- Variables --------------------------------*/
 
@@ -12,6 +14,9 @@ const boardRow = document.querySelectorAll(".row")
 
 const boardSlot = document.querySelectorAll(".slot")
 
+const turnDisplay = document.querySelector("#game-status")
+
+const resetBtn = document.querySelector("reset-button")
 /*----------------------------- Event Listeners -----------------------------*/
 
 //"click" event listener for every slot on the board. 
@@ -39,11 +44,15 @@ boardSlot.forEach.call(boardSlot, (slot)=>{
 /*-------------------------------- Functions --------------------------------*/
 
 
-
+init ()
 
 
 function init () {
-  turn
+  turn = 1
+  turnDisplay.innerText = "Player 1's turn"
+  winner = null
+  resetBtn.setAttribute("hidden", true)
+  render()
 }
 
 
@@ -59,7 +68,6 @@ function handleClick (e) {
     //reference event listener above
   let column = e.target.cellIndex
   let row = []
-  let playerTurn = 1
   let player1Color = "black"
   let player2Color = "white"
 
@@ -67,7 +75,7 @@ function handleClick (e) {
     if (boardRow[i].children[column]
     .style.backgroundColor === "mediumturquoise") {
       row.push(boardRow[i].children[column])
-      if (playerTurn === 1) {
+      if (turn === 1) {
         row[0].style.backgroundColor = 
         player1Color
       } else {
@@ -76,6 +84,7 @@ function handleClick (e) {
       }
     }
   }
+  turn *= -1
 }
 
   //1.  handleClick
@@ -86,9 +95,8 @@ function handleClick (e) {
 
 
 
-function winnerDef (slot1, slot2, slot3, slot4) {
-  if (slot1 === slot2 === slot3 === slot4 !== "mediumturquoise")
-    return true
+function defineWinner (slot1, slot2, slot3, slot4) {
+  return slot1 === slot2 === slot3 === slot4 !== "mediumturquoise"
 }
     
   //2. defineWinner / checkWinner (Boolean)
