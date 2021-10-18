@@ -35,7 +35,7 @@ boardSlot.forEach(slot => slot.addEventListener("click", (e) =>{
 
 boardSlot.forEach.call(boardSlot, (slot)=>{
   slot.addEventListener("click", handleClick)
-  slot.style.backgroundColor = "mediumturquoise"
+  slot.style.backgroundColor = emptySlot
 })
 //console.log will display rowIndex and then cellIndex like coordinates. 
 //NOT NEEDED FOR GAMEPLAY BUT SHOWS THAT EACH SLOT ON THE BOARD IS RESPONSIVE TO A CLICK
@@ -61,6 +61,7 @@ function init () {
 
 
 function render () {
+
 
   if (turn === 1) {
     turnDisplay.innerText = "Player 1's Turn"
@@ -121,67 +122,35 @@ function verticalWinCheck () {
     }
   }
 }
-  // if(defineWinner(
-  //   boardRow[i].children[column],
-  //   boardRow[i].children[column + 1],
-  //   boardRow[i].children[column + 2],
-  //   boardRow[i].children[column + 3])) {
-  //     return true
-  //   }
-  //row[]will stay the same 
-  //column[], +1 , +2 , +3 or -1 , -2 , -3
 
-// function verticalWinCheck () {
-//   for (let x = 0; r < 0) {
-
-//   }
-// }
-  // if(defineWinner(
-  //   boardRow[i].children[column],
-  //   boardRow[i + 1].children[column],
-  //   boardRow[i + 2].children[column],
-  //   boardRow[i + 3].children[column],)){
-  //     return true
-  // }
-  //row[], +1 , +2 , +3 or -1 , -2 , -3
-  //column[] will stay the same
-
-
-function diagonalWinCheck1 () { //Left to right (upward)
-  if(defineWinner(
-    boardRow[i].children[column],
-    boardRow[i - 1].children[column + 1],
-    boardRow[i - 2].children[column + 2],
-    boardRow[i - 3].children[column + 3],)) {
-      return true
+function diagonaDownlWinCheck () {
+  for (let x = 0; x < 3; x++) {
+    for (let y = 0; y < 4; y++) {
+      if(defineWinner(
+        boardRow[x].children[y].style.backgroundColor,
+        boardRow[x + 1].children[y + 1].style.backgroundColor,
+        boardRow[x + 2].children[y + 2].style.backgroundColor,
+        boardRow[x + 3].children[y + 3].style.backgroundColor,
+      )) {
+        return true
+      }
+    }
   }
-  //row[], -1 , -2 , -3
-  //column[], +1 , +2 , +3
 }
 
-function diagonalWinCheck2 () { //Left to right (downward)
-  if(defineWinner(
-    boardRow[i].children[column],
-    boardRow[i + 1].children[column + 1],
-    boardRow[i + 2].children[column + 2],
-    boardRow[i + 3].children[column + 3],)) {
-      return true
+diagonalUpWinCheck () {
+  for (let x = 0; x > 2; x--) {
+    for (let y = 5; y > 2; y--) {
+      if(defineWinner(
+        boardRow[x].children[y].style.backgroundColor,
+        boardRow[x - 1].children[y + 1].style.backgroundColor,
+        boardRow[x - 2].children[y + 2].style.backgroundColor,
+        boardRow[x - 3].children[y + 3].style.backgroundColor,
+      )) {
+    }
   }
-  // row[], +1 , +2 , +3
-  //column[], +1 , +2 , +3
 }
 
-
-  //2. defineWinner / checkWinner (Boolean)
-    //a. basic definition: four slots / table cells are the same color 
-    //b. within this function I can call functions for each type of winCheck 
-      //1a. Horixontal, Vertical, Diagonal R -> L, Diagonal L-> R
-      //2a. If any of these win conditions are satisfied the game is over
-        //1b. If not - the game will continue
-
-  //3. Horizontal, Vertical, Diagonal 2x winCheck (Boolean)
-    //a. Iterate over the 2d array and check for:
-      //1a. Proper value changes in row and column indexes that signify a win
 
 function tieGameCheck () {
   //all slots backgroundColor !== white and winner === null
