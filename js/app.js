@@ -1,6 +1,10 @@
 /*-------------------------------- Constants --------------------------------*/
 
-//playerColors
+const player1Color = "black"
+
+const player2Color = "white"
+
+const emptySlot = "mediumturquoise"
 
 /*-------------------------------- Variables --------------------------------*/
 
@@ -49,7 +53,7 @@ function init () {
   turn = 1
   turnDisplay.innerText = "Player 1's turn"
   winner = null
-  resetBtn.setAttribute("hidden", true)
+  // resetBtn.setAttribute("hidden", true)
   render()
 }
 
@@ -57,12 +61,8 @@ function init () {
 
 
 function render () {
-  horizontalWinCheck()
-  verticalWinCheck()
-  diagonalWinCheck1()
-  diagonalWinCheck2()
 
-  if (turn > 0) {
+  if (turn === 1) {
     turnDisplay.innerText = "Player 1's Turn"
   } else {
     turnDisplay.innerText = "Player 2's Turn"
@@ -71,72 +71,81 @@ function render () {
 
 //List of functions for the game
 function handleClick (e) {
-  //declare empty variables for columns and rows 
-    //reference event listener above
   let column = e.target.cellIndex
   let row = []
-  let player1Color = "black"
-  let player2Color = "white"
-
   for (let i = 5; i > -1; i--) {
     if (boardRow[i].children[column]
-    .style.backgroundColor === "mediumturquoise") {
+    .style.backgroundColor === emptySlot) {
       row.push(boardRow[i].children[column])
       if (turn === 1) {
-        row[0].style.backgroundColor = 
-        player1Color
+        row[0].style.backgroundColor = player1Color
       } else {
-        row[0].style.backgroundColor = 
-        player2Color
+        row[0].style.backgroundColor = player2Color
       }
     }
   }
   turn *= -1
+  render()
 }
-
-  //1.  handleClick
-    //a. Will change the color of the slot click on to represent the id of 
-    //the player that clicked
-    //b. Change the value of the player turn and update the message showing whose turn it is
-
-
-
 
 function defineWinner (slot1, slot2, slot3, slot4) {
-  return slot1 === slot2 === slot3 === slot4 !== "mediumturquoise"
+  return slot1 === slot2 === slot3 === slot4 !== emptySlot
 }
-    
-  //2. defineWinner / checkWinner (Boolean)
-    //a. basic definition: four slots / table cells are the same color 
-    //b. within this function I can call functions for each type of winCheck 
-      //1a. Horixontal, Vertical, Diagonal R -> L, Diagonal L-> R
-      //2a. If any of these win conditions are satisfied the game is over
-        //1b. If not - the game will continue
 
 function horizontalWinCheck () {
-  if(defineWinner(
-    boardRow[i].children[column],
-    boardRow[i].children[column + 1],
-    boardRow[i].children[column + 2],
-    boardRow[i].children[column + 3])) {
-      return true
+  for (let x = 0; x < boardRow.length; x++) {
+    for (let y = 0; y < 4; y++) {
+      if(defineWinner(
+        boardRow[x].children[y].style.backgroundColor,
+        boardRow[x].children[y + 1].style.backgroundColor,
+        boardRow[x].children[y + 2].style.backgroundColor,
+        boardRow[x].children[y + 3].style.backgroundColor,
+      )) {
+        return true
+      }
     }
-  //row[]will stay the same 
-  //column[], +1 , +2 , +3 or -1 , -2 , -3
+  }  
 }
-
 
 function verticalWinCheck () {
-  if(defineWinner(
-    boardRow[i].children[column],
-    boardRow[i + 1].children[column],
-    boardRow[i + 2].children[column],
-    boardRow[i + 3].children[column],)){
-      return true
+  for (let x = 0; x < 3; x++) {
+    for (let y = 0; y < 7; y++) {
+      if(defineWinner(
+        boardRow[x].children[y].style.backgroundColor,
+        boardRow[x + 1].children[y].style.backgroundColor,
+        boardRow[x + 2].children[y].style.backgroundColor,
+        boardRow[x + 3].children[y].style.backgroundColor,
+      )) {
+        return true
+      }
+    }
   }
+}
+  // if(defineWinner(
+  //   boardRow[i].children[column],
+  //   boardRow[i].children[column + 1],
+  //   boardRow[i].children[column + 2],
+  //   boardRow[i].children[column + 3])) {
+  //     return true
+  //   }
+  //row[]will stay the same 
+  //column[], +1 , +2 , +3 or -1 , -2 , -3
+
+// function verticalWinCheck () {
+//   for (let x = 0; r < 0) {
+
+//   }
+// }
+  // if(defineWinner(
+  //   boardRow[i].children[column],
+  //   boardRow[i + 1].children[column],
+  //   boardRow[i + 2].children[column],
+  //   boardRow[i + 3].children[column],)){
+  //     return true
+  // }
   //row[], +1 , +2 , +3 or -1 , -2 , -3
   //column[] will stay the same
-}
+
 
 function diagonalWinCheck1 () { //Left to right (upward)
   if(defineWinner(
@@ -153,14 +162,22 @@ function diagonalWinCheck1 () { //Left to right (upward)
 function diagonalWinCheck2 () { //Left to right (downward)
   if(defineWinner(
     boardRow[i].children[column],
-    boardRow[i - 1].children[column + 1],
-    boardRow[i - 2].children[column + 2],
-    boardRow[i - 3].children[column + 3],)) {
+    boardRow[i + 1].children[column + 1],
+    boardRow[i + 2].children[column + 2],
+    boardRow[i + 3].children[column + 3],)) {
       return true
   }
   // row[], +1 , +2 , +3
   //column[], +1 , +2 , +3
 }
+
+
+  //2. defineWinner / checkWinner (Boolean)
+    //a. basic definition: four slots / table cells are the same color 
+    //b. within this function I can call functions for each type of winCheck 
+      //1a. Horixontal, Vertical, Diagonal R -> L, Diagonal L-> R
+      //2a. If any of these win conditions are satisfied the game is over
+        //1b. If not - the game will continue
 
   //3. Horizontal, Vertical, Diagonal 2x winCheck (Boolean)
     //a. Iterate over the 2d array and check for:
