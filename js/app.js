@@ -21,27 +21,18 @@ const turnDisplay = document.querySelector("#game-status")
 const resetBtn = document.querySelector("reset-button")
 /*----------------------------- Event Listeners -----------------------------*/
 
-//"click" event listener for every slot on the board. 
 boardSlot.forEach(slot => slot.addEventListener("click", (e) =>{
   console.log(`
   ${e.target.parentElement.rowIndex}, 
   ${e.target.cellIndex}`) //2d Array: rowIndex first and within rowIndex is cellIndex
 } )) //cellIndex is essentially = the value of the column 
 
-// Array.prototype.forEach.call(boardSlot, (slot)=>{
-//   slot.addEventListener("click", handleClick)
-//   slot.style.backgroundColor = "mediumturquoise"
-// })
 
 boardSlot.forEach.call(boardSlot, (slot)=>{
   slot.addEventListener("click", handleClick)
   slot.style.backgroundColor = emptySlot
 })
-//console.log will display rowIndex and then cellIndex like coordinates. 
-//NOT NEEDED FOR GAMEPLAY BUT SHOWS THAT EACH SLOT ON THE BOARD IS RESPONSIVE TO A CLICK
-//Can attach a function like a "handle click" once it is written
-//This is going to help me define each type of win function  
-  //which values - rowIndex and cellIndex will need to change
+
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -62,6 +53,11 @@ function init () {
 
 function render () {
 
+  horizontalWinCheck()
+  verticalWinCheck()
+  diagonaDownlWinCheck()
+  diagonalUpWinCheck()
+
 
   if (turn === 1) {
     turnDisplay.innerText = "Player 1's Turn"
@@ -70,7 +66,6 @@ function render () {
   }
 }
 
-//List of functions for the game
 function handleClick (e) {
   let column = e.target.cellIndex
   let row = []
@@ -138,7 +133,7 @@ function diagonaDownlWinCheck () {
   }
 }
 
-diagonalUpWinCheck () {
+function diagonalUpWinCheck () {
   for (let x = 0; x > 2; x--) {
     for (let y = 5; y > 2; y--) {
       if(defineWinner(
@@ -147,27 +142,17 @@ diagonalUpWinCheck () {
         boardRow[x - 2].children[y + 2].style.backgroundColor,
         boardRow[x - 3].children[y + 3].style.backgroundColor,
       )) {
+        return true
+      }
     }
   }
 }
 
+//incorporate logic to stop board from being clicked after game is won.
+  //use "active" logic that I used in Connect 4
 
 function tieGameCheck () {
   //all slots backgroundColor !== white and winner === null
 }
-
-  //4. Check for tie game
-    //a. basic premise is if all indexes are !== the starting color/value
-      //& a winner has not been determined - the game is a tie
-
-  //5. Render Function
-    //a. Continually update the board, message displaying players turn and display winner message if true
-    //b. remove hidden attribute from the reset button allowing the game to be reinitialized
-
-  //6. Init Function
-    //a. Initialize the board to its original state 
-    //b. Reset the player turn value to player 1
-    //c. Reprompt input for player names
-    //d. Hide the reset button
 
 
