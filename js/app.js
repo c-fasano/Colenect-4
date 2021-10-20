@@ -150,14 +150,19 @@ function diagonaDownlWinCheck () {
 }
 
 function diagonalUpWinCheck () {
-  for (let x = 0; x > 2; x--) {
+  for (let x = 0; x < 3; x++) {
     for (let y = 5; y > 2; y--) {
-      if(defineWinner(
-        boardRow[x].children[y].style.backgroundColor,
-        boardRow[x - 1].children[y + 1].style.backgroundColor,
-        boardRow[x - 2].children[y + 2].style.backgroundColor,
-        boardRow[x - 3].children[y + 3].style.backgroundColor,
-      )) {
+      if(
+        boardRow[x].children[y].style.backgroundColor ===
+        boardRow[x + 1].children[y - 1].style.backgroundColor &&
+        boardRow[x].children[y].style.backgroundColor ===
+        boardRow[x + 2].children[y - 2].style.backgroundColor &&
+        boardRow[x].children[y].style.backgroundColor ===
+        boardRow[x + 3].children[y - 3].style.backgroundColor &&
+        boardRow[x].children[y].style.backgroundColor !==
+        emptySlot
+      ) {
+        console.log("true")
         return true
       }
     }
