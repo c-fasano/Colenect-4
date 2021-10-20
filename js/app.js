@@ -89,19 +89,25 @@ function defineWinner (slot1, slot2, slot3, slot4) {
 }
 
 function horizontalWinCheck () {
-  for (let x = 0; x < boardRow.length; x++) {
+  for (let x = 0; x < 6; x++) {
     for (let y = 0; y < 4; y++) {
-      if(defineWinner(
-        boardRow[x].children[y].style.backgroundColor,
-        boardRow[x].children[y + 1].style.backgroundColor,
-        boardRow[x].children[y + 2].style.backgroundColor,
-        boardRow[x].children[y + 3].style.backgroundColor,
-      )) {
+      console.log(boardRow[x].children[y].style.backgroundColor)
+      if (
+        boardRow[x].children[y].style.backgroundColor === 
+        boardRow[x].children[y + 1].style.backgroundColor && 
+        boardRow[x].children[y].style.backgroundColor === 
+        boardRow[x].children[y + 2].style.backgroundColor && 
+        boardRow[x].children[y].style.backgroundColor === 
+        boardRow[x].children[y + 3].style.backgroundColor && 
+        boardRow[x].children[y].style.backgroundColor !== 
+        emptySlot
+      ) {
+        console.log("true")
         return true
       }
     }
-  }  
-}
+  }
+}  
 
 function verticalWinCheck () {
   for (let x = 0; x < 3; x++) {
