@@ -112,12 +112,17 @@ function horizontalWinCheck () {
 function verticalWinCheck () {
   for (let x = 0; x < 3; x++) {
     for (let y = 0; y < 7; y++) {
-      if(defineWinner(
-        boardRow[x].children[y].style.backgroundColor,
-        boardRow[x + 1].children[y].style.backgroundColor,
-        boardRow[x + 2].children[y].style.backgroundColor,
-        boardRow[x + 3].children[y].style.backgroundColor,
-      )) {
+      if(
+        boardRow[x].children[y].style.backgroundColor ===
+        boardRow[x + 1].children[y].style.backgroundColor && 
+        boardRow[x].children[y].style.backgroundColor === 
+        boardRow[x + 2].children[y].style.backgroundColor &&
+        boardRow[x].children[y].style.backgroundColor ===
+        boardRow[x + 3].children[y].style.backgroundColor &&
+        boardRow[x].children[y].style.backgroundColor !==
+        emptySlot
+      ) {
+        console.log("true")
         return true
       }
     }
