@@ -8,7 +8,7 @@ const emptySlot = "mediumturquoise"
 
 /*-------------------------------- Variables --------------------------------*/
 
-let turn, winner, board
+let turn, board, count
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -18,61 +18,45 @@ const boardSlot = document.querySelectorAll(".slot")
 
 const turnDisplay = document.querySelector("#game-status")
 
-const resetBtn = document.querySelector("reset-button")
-/*----------------------------- Event Listeners -----------------------------*/
-
-boardSlot.forEach(slot => slot.addEventListener("click", (e) =>{
-  console.log(`
-  ${e.target.parentElement.rowIndex}, 
-  ${e.target.cellIndex}`) //2d Array: rowIndex first and within rowIndex is cellIndex
-} )) //cellIndex is essentially = the value of the column 
-
-
-boardSlot.forEach.call(boardSlot, (slot)=>{
-  slot.addEventListener("click", handleClick)
-  slot.style.backgroundColor = emptySlot
-})
-
+const resetBtn = document.querySelector("#reset-button")
 
 /*-------------------------------- Functions --------------------------------*/
 
-
 init ()
 
-
 function init () {
+  boardSlot.forEach.call(boardSlot, (slot)=>{
+    slot.addEventListener("click", handleClick)
+    slot.style.backgroundColor = emptySlot
+  })
   turn = 1
-  winner = null
-  // resetBtn.setAttribute("hidden", true)
+  count = 1
+  resetBtn.setAttribute("hidden", true)
   render()
 }
 
-
-
-
 function render () {
-if
+  if
   (horizontalWinCheck() ||
   verticalWinCheck() ||
   diagonalUpWinCheck() ||
   diagonaDownlWinCheck()) {
-    winner = turn
+    if (turn === 1) {
+      turnDisplay.innerText = "Player 1 Wins!"
+    } else {
+      turnDisplay.innerText = "Player 2 Wins!"
+    }
+    endGame()
   }
-
-  if (turn === 1) {
-    turnDisplay.innerText = "Player 1's Turn"
-  } else {
-    turnDisplay.innerText = "Player 2's Turn"
-  }
-
-  if (winner === -1) {
-    turnDisplay.innerText = "Player 1 Wins!"
-  } 
-  if (winner === 1) {
-    turnDisplay.innerText = "Player 2 Wins"
-  }
-  if (winner === 2) {
+  else if (tieCheck()) {
     turnDisplay.innerText = "It's a Tie!"
+    endGame()
+  } else {
+    if (turn === 1) {
+      turnDisplay.innerText = "Player 1's Turn"
+    } else {
+      turnDisplay.innerText = "Player 2's Turn"
+    }
   }
 }
 
@@ -90,13 +74,10 @@ function handleClick (e) {
       }
     } 
   }
-  // if (row.length === 42 && winner === null) {
-  //   winner = 2
-  // }
-  turn *= -1
   render()
+  turn *= -1
+  count += 1
 }
-
 
 function horizontalWinCheck () {
   for (let x = 0; x < 6; x++) {
@@ -112,7 +93,6 @@ function horizontalWinCheck () {
         boardRow[x].children[y].style.backgroundColor !== 
         emptySlot
       ) {
-        console.log("true")
         return true
       }
     }
@@ -122,7 +102,7 @@ function horizontalWinCheck () {
 function verticalWinCheck () {
   for (let x = 0; x < 3; x++) {
     for (let y = 0; y < 7; y++) {
-      if(
+      if (
         boardRow[x].children[y].style.backgroundColor ===
         boardRow[x + 1].children[y].style.backgroundColor && 
         boardRow[x].children[y].style.backgroundColor === 
@@ -132,7 +112,6 @@ function verticalWinCheck () {
         boardRow[x].children[y].style.backgroundColor !==
         emptySlot
       ) {
-        console.log("true")
         return true
       }
     }
@@ -142,7 +121,7 @@ function verticalWinCheck () {
 function diagonaDownlWinCheck () {
   for (let x = 0; x < 3; x++) {
     for (let y = 0; y < 4; y++) {
-      if(
+      if (
         boardRow[x].children[y].style.backgroundColor ===
         boardRow[x + 1].children[y + 1].style.backgroundColor &&
         boardRow[x].children[y].style.backgroundColor ===
@@ -152,8 +131,7 @@ function diagonaDownlWinCheck () {
         boardRow[x].children[y].style.backgroundColor !==
         emptySlot
       ) {
-        console.log("true")
-        return winner = true
+        return true
       }
     }
   }
@@ -162,7 +140,7 @@ function diagonaDownlWinCheck () {
 function diagonalUpWinCheck () {
   for (let x = 0; x < 3; x++) {
     for (let y = 5; y > 2; y--) {
-      if(
+      if (
         boardRow[x].children[y].style.backgroundColor ===
         boardRow[x + 1].children[y - 1].style.backgroundColor &&
         boardRow[x].children[y].style.backgroundColor ===
@@ -172,7 +150,6 @@ function diagonalUpWinCheck () {
         boardRow[x].children[y].style.backgroundColor !==
         emptySlot
       ) {
-        console.log("true")
         return true
       }
     }
@@ -182,6 +159,12 @@ function diagonalUpWinCheck () {
 //incorporate logic to stop board from being clicked after game is won.
   //use "active" logic that I used in Connect 4
 
+function tieCheck () {
+  return count === 42
+}
 
-
-
+function endGame () {
+  boardSlot.forEach.call(boardSlot, (slot)=>{
+    slot.removeEventListener("click", handleClick)
+  })
+}

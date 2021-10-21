@@ -1,10 +1,12 @@
 main {
   background-color: rgb(168, 168, 191);
   min-height: 100vh;
+  min-width: 100%;
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 90px;
+  margin-top: ;
 }
 
 #game-status {
