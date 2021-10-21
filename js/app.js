@@ -40,7 +40,7 @@ function render () {
   (horizontalWinCheck() ||
   verticalWinCheck() ||
   diagonalUpWinCheck() ||
-  diagonaDownlWinCheck()) {
+  diagonalDownWinCheck()) {
     if (turn === 1) {
       turnDisplay.innerText = "Player 1 Wins!"
     } else {
@@ -53,9 +53,9 @@ function render () {
     endGame()
   } else {
     if (turn === 1) {
-      turnDisplay.innerText = "Player 1's Turn"
+      turnDisplay.innerText = "Turn #" + count + ": Player 1's Turn"
     } else {
-      turnDisplay.innerText = "Player 2's Turn"
+      turnDisplay.innerText = "Turn #" + count + ": Player 2's Turn"
     }
   }
 }
@@ -63,10 +63,12 @@ function render () {
 function handleClick (e) {
   let column = e.target.cellIndex
   let row = []
+  let validChoice = false
   for (let i = 5; i > -1; i--) {
     if (boardRow[i].children[column]
     .style.backgroundColor === emptySlot) {
       row.push(boardRow[i].children[column])
+      validChoice = true
       if (turn === 1) {
         row[0].style.backgroundColor = player1Color
       } else {
@@ -74,9 +76,17 @@ function handleClick (e) {
       }
     } 
   }
-  render()
-  turn *= -1
-  count += 1
+  if (validChoice) {
+    turn *= -1
+    count += 1
+    render()
+  } else {
+    if (turn === 1) {
+      turnDisplay.innerText = "Invalid choice. Still Player 1's Turn"
+    } else {
+      turnDisplay.innerText = "Invalid chocie Still Player 2's Turn"
+    }
+  }
 }
 
 function horizontalWinCheck () {
@@ -118,7 +128,7 @@ function verticalWinCheck () {
   }
 }
 
-function diagonaDownlWinCheck () {
+function diagonalDownWinCheck () {
   for (let x = 0; x < 3; x++) {
     for (let y = 0; y < 4; y++) {
       if (
@@ -160,7 +170,7 @@ function diagonalUpWinCheck () {
   //use "active" logic that I used in Connect 4
 
 function tieCheck () {
-  return count === 42
+  return count === 43
 }
 
 function endGame () {
