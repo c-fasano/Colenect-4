@@ -4,13 +4,16 @@ const player1Color = "black"
 
 const player2Color = "white"
 
-const emptySlot = "mediumturquoise"
+const emptySlot = "rgb(220, 212, 200)"
 
 /*-------------------------------- Variables --------------------------------*/
 
 let turn, board, count
 
 /*------------------------ Cached Element References ------------------------*/
+const page = document.querySelector("#game")
+
+const darkMode = document.querySelector(".toggle")
 
 const boardRow = document.querySelectorAll(".row")
 
@@ -179,3 +182,4 @@ function endGame () {
   })
   resetBtn.hidden = false
 }
+
