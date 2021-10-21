@@ -43,7 +43,7 @@ init ()
 function init () {
   turn = 1
   winner = null
-  resetBtn.setAttribute("hidden", true)
+  // resetBtn.setAttribute("hidden", true)
   render()
 }
 
@@ -58,7 +58,6 @@ if
   diagonaDownlWinCheck()) {
     winner = turn
   }
-  console.log(winner)
 
   if (turn === 1) {
     turnDisplay.innerText = "Player 1's Turn"
