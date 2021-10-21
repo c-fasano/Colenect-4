@@ -25,19 +25,19 @@ A winner is declared when a player lines up 4 of colored chips in 4 consecutive 
 
 ### Horizontal:
 
-![]()"Image of horizaontal win on board"
+![Horizontal win showcase](https://i.imgur.com/gnTo5GR.png)
 
 ### Vertical:
 
-![]()"Image of vertical win on board"
+![Vertical win showcase](https://i.imgur.com/YkjEnUV.png)
 
 ### Diagonal:
 
-![]()"Image of one diagonal direction"
+![Diagonal upward win showcase](https://i.imgur.com/nlmmDY2.png)
 
 or
 
-![]()"Image of the other diagonal direction"
+![Diagonal downward win showcase](https://i.imgur.com/4hBrLyX.png)
 
 
 ## Future Implementations 

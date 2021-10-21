@@ -4,7 +4,7 @@ const player1Color = "black"
 
 const player2Color = "white"
 
-const emptySlot = "rgb(220, 212, 200)"
+const emptySlot = "rgb(200, 192, 180)"
 
 /*-------------------------------- Variables --------------------------------*/
 
