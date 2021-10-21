@@ -13,7 +13,7 @@ let turn, board, count
 /*------------------------ Cached Element References ------------------------*/
 const page = document.querySelector("#game")
 
-const darkMode = document.querySelector(".toggle")
+const toggleBtn = document.querySelector(".toggle")
 
 const boardRow = document.querySelectorAll(".row")
 
@@ -24,6 +24,11 @@ const turnDisplay = document.querySelector("#game-status")
 const resetBtn = document.querySelector("#reset-button")
 
 /*-------------------------------- Functions --------------------------------*/
+toggleBtn.addEventListener("click", colorModeChange)
+
+function colorModeChange () {
+  page.classList.toggle("dark-mode")
+}
 
 init ()
 

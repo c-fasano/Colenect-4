@@ -41,7 +41,7 @@ table {
 }
 
 #rules {
-  width: 100px;
+  width: 400px;
   font-size: 25px;
 }
 
@@ -59,4 +59,9 @@ td:hover {
 .dark-mode {
   background-color: rgb(31, 30, 30);
   color: antiquewhite;
+}
+
+#flex-row {
+  display: flex;
+  flex-wrap: wrap;
 }
