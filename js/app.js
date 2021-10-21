@@ -42,9 +42,8 @@ init ()
 
 function init () {
   turn = 1
-  turnDisplay.innerText = "Player 1's turn"
   winner = null
-  // resetBtn.setAttribute("hidden", true)
+  resetBtn.setAttribute("hidden", true)
   render()
 }
 
@@ -52,17 +51,29 @@ function init () {
 
 
 function render () {
-
-  horizontalWinCheck()
-  verticalWinCheck()
-  diagonaDownlWinCheck()
-  diagonalUpWinCheck()
-
+if
+  (horizontalWinCheck() ||
+  verticalWinCheck() ||
+  diagonalUpWinCheck() ||
+  diagonaDownlWinCheck()) {
+    winner = turn
+  }
+  console.log(winner)
 
   if (turn === 1) {
     turnDisplay.innerText = "Player 1's Turn"
   } else {
     turnDisplay.innerText = "Player 2's Turn"
+  }
+
+  if (winner === -1) {
+    turnDisplay.innerText = "Player 1 Wins!"
+  } 
+  if (winner === 1) {
+    turnDisplay.innerText = "Player 2 Wins"
+  }
+  if (winner === 2) {
+    turnDisplay.innerText = "It's a Tie!"
   }
 }
 
@@ -78,15 +89,15 @@ function handleClick (e) {
       } else {
         row[0].style.backgroundColor = player2Color
       }
-    }
+    } 
   }
+  // if (row.length === 42 && winner === null) {
+  //   winner = 2
+  // }
   turn *= -1
   render()
 }
 
-function defineWinner (slot1, slot2, slot3, slot4) {
-  return slot1 === slot2 === slot3 === slot4 !== emptySlot
-}
 
 function horizontalWinCheck () {
   for (let x = 0; x < 6; x++) {
@@ -143,7 +154,7 @@ function diagonaDownlWinCheck () {
         emptySlot
       ) {
         console.log("true")
-        return true
+        return winner = true
       }
     }
   }
@@ -172,8 +183,6 @@ function diagonalUpWinCheck () {
 //incorporate logic to stop board from being clicked after game is won.
   //use "active" logic that I used in Connect 4
 
-function tieGameCheck () {
-  //all slots backgroundColor !== white and winner === null
-}
+
 
 
