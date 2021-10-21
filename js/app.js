@@ -36,12 +36,8 @@ function init () {
 }
 
 function render () {
-  if
-  (horizontalWinCheck() ||
-  verticalWinCheck() ||
-  diagonalUpWinCheck() ||
-  diagonalDownWinCheck()) {
-    if (turn === 1) {
+  if (winCheck()) {
+    if (turn === -1) {
       turnDisplay.innerText = "Player 1 Wins!"
     } else {
       turnDisplay.innerText = "Player 2 Wins!"
@@ -166,8 +162,12 @@ function diagonalUpWinCheck () {
   }
 }
 
-//incorporate logic to stop board from being clicked after game is won.
-  //use "active" logic that I used in Connect 4
+function winCheck () {
+  return (horizontalWinCheck() ||
+  verticalWinCheck() ||
+  diagonalUpWinCheck() ||
+  diagonalDownWinCheck())
+}
 
 function tieCheck () {
   return count === 43
