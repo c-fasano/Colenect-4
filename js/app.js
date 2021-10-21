@@ -25,13 +25,13 @@ const resetBtn = document.querySelector("#reset-button")
 init ()
 
 function init () {
+  resetBtn.addEventListener("click", init)
   boardSlot.forEach.call(boardSlot, (slot)=>{
     slot.addEventListener("click", handleClick)
     slot.style.backgroundColor = emptySlot
   })
   turn = 1
   count = 1
-  resetBtn.setAttribute("hidden", true)
   render()
 }
 
@@ -177,4 +177,5 @@ function endGame () {
   boardSlot.forEach.call(boardSlot, (slot)=>{
     slot.removeEventListener("click", handleClick)
   })
+  resetBtn.hidden = false
 }
