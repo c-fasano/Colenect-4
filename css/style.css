@@ -8,7 +8,7 @@ h1 {
   font-family: "Rampart One";
   font-size: 95px;
   margin-top: 0px;
-  color: rgb(211, 185, 156);
+  color: rgb(238, 252, 231);
   text-align: center;
 }
 
@@ -17,7 +17,7 @@ h1 {
   font-size: 40px;
   display: flex;
   justify-content: center;
-  color: rgb(211, 185, 156);
+  color: rgb(252, 190, 118);
 }
 
 #game-board {
@@ -42,7 +42,7 @@ table {
   height: 115px;
   width: 115px;
   border-radius: 50%;
-  border: 3px solid black;
+  border: 3px solid rgb(3, 34, 3);
 }
 
 #rules {
@@ -64,7 +64,7 @@ td:hover {
 
 .dark-mode {
   background-color: rgb(31, 30, 30);
-  color: antiquewhite;
+  color: white;
 }
 
 #flex-row {
