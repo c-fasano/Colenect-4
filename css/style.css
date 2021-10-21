@@ -1,26 +1,35 @@
 main {
-  background-color: rgb(137, 137, 143);
+  background-color: rgb(77, 77, 77);
   min-height: 100vh;
   min-width: 100%;
 }
 
 h1 {
   font-family: "Rampart One";
-  font-size: 90px;
+  font-size: 95px;
   margin-top: 0px;
+  color: rgb(211, 185, 156);
+  text-align: center;
 }
 
 #game-status {
   font-family: "Permanent Marker";
-  font-size: 30px;;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  color: rgb(211, 185, 156);
 }
 
 #game-board {
-  background-color: rgb(8, 69, 8);
+  background-color: rgb(10, 62, 10);
   height: 900px;
   width: 1050px;
-  margin: 0 auto;
-  border: 5px solid rgb(13, 13, 80,);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 45px;
+
+  border: 0.5rem outset rgb(20, 124, 20);
   border-radius: 25px;
 }
 
@@ -36,13 +45,10 @@ table {
   border: 3px solid black;
 }
 
-.flex-container {
-  text-align: center;
-}
-
 #rules {
   width: 400px;
   font-size: 25px;
+  font-family: "Permanent Marker";
 }
 
 
@@ -64,4 +70,18 @@ td:hover {
 #flex-row {
   display: flex;
   flex-wrap: wrap;
+}
+
+.toggle {
+  font-size: 20px;
+  height: 45px;
+  font-family: "Permanent Marker";
+  background-color: black;
+  color: white;
+  margin: 25px;
+  border: 4px outset lightslategray
+}
+
+h3 {
+  font-size: 45px;
 }
