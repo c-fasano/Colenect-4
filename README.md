@@ -1,6 +1,6 @@
 # Connect 4
 
-https://vigilant-kare-5690e3.netlify.app/
+[Click to Play](https://vigilant-kare-5690e3.netlify.app/)
 
 ## History
 
