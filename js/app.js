@@ -1,16 +1,13 @@
-/*-------------------------------- Constants --------------------------------*/
-
 const player1Color = "black"
 
 const player2Color = "white"
 
 const emptySlot = "rgb(200, 192, 180)"
 
-/*-------------------------------- Variables --------------------------------*/
 
 let turn, board, count
 
-/*------------------------ Cached Element References ------------------------*/
+
 const page = document.querySelector("#game")
 
 const toggleBtn = document.querySelector(".toggle")
@@ -23,8 +20,9 @@ const turnDisplay = document.querySelector("#game-status")
 
 const resetBtn = document.querySelector("#reset-button")
 
-/*-------------------------------- Functions --------------------------------*/
+
 toggleBtn.addEventListener("click", colorModeChange)
+
 
 function colorModeChange () {
   page.classList.toggle("dark-mode")
