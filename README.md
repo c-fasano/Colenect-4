@@ -1,5 +1,7 @@
 # Connect 4
 
+https://vigilant-kare-5690e3.netlify.app/
+
 ## History
 
 Connect 4 is a 1 on 1 game that is easy to learn, accessible and fun while still allowing room for challenge and competition between players. Modern Connect 4 was largely inspired by Funtastic's "Score 4" game they created in the late 1960's. Lucky for us, the design of the game has since been simplified making it that much more fun to play. 
@@ -11,7 +13,7 @@ Today's standard Connect 4 boards have a total of 42 slots (6 rows, 7 columns). 
 2. According to YouTube channel, NumberPhile, there are a total of 4,531,985,219,092 possible moves that can be made!! Despite this there are individuals who have solved Connect 4 meaning they have developed numerous strategies in order to guarantee a win every single time. 
 
 
-## Rules of the game:
+## Playing the game:
 
 1. Each player will be assigned a color when the game begins. 
   
@@ -39,6 +41,13 @@ or
 
 ![Diagonal downward win showcase](https://i.imgur.com/4hBrLyX.png)
 
+## Technologies Used:
+
+1. HTML
+
+2. CSS
+
+3. JavaScript
 
 ## Future Implementations 
 
